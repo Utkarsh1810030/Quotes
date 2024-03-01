@@ -1,0 +1,21 @@
+{
+  "name": "quotes",
+  "version": "1.0.0",
+  "description": "An application for automated quotes generation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "author": "Utkarsh",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-session": "^2.1.0",
+    "express": "^4.18.2",
+    "mongodb": "^6.3.0",
+    "mongoose": "^8.1.3",
+    "openai": "^4.28.0",
+    "passport": "^0.5.3",
+    "passport-google-oauth20": "^2.0.0"
+  }
+}
