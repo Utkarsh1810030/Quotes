@@ -3,7 +3,7 @@ const { OpenAI } = require('openai');
 module.exports = (app) => {
   app.post('/completions', async (req, res) => {
     const client = new OpenAI({
-      apiKey: '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',
+      apiKey: '',
     });
     const response = await client.chat.completions.create({
       model: 'gpt-3.5-turbo-0125',
