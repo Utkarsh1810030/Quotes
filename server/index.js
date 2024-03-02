@@ -44,7 +44,7 @@ mongoose.connect(keys.mongooseURI);
 //   });
 // }
 
-app.get('/healthcheck', () => {
+app.get('/healthcheck', (req, res) => {
   res.send('server is up and running');
 });
 
