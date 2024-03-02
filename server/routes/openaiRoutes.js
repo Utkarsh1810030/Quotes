@@ -1,9 +1,11 @@
 const { OpenAI } = require('openai');
 
+const keys = require('../config/keys');
+
 module.exports = (app) => {
   app.post('/completions', async (req, res) => {
     const client = new OpenAI({
-      apiKey: '',
+      apiKey: keys.openaiKey,
     });
     const response = await client.chat.completions.create({
       model: 'gpt-3.5-turbo-0125',
