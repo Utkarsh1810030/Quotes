@@ -32,15 +32,15 @@ app.use(passport.session());
 
 mongoose.connect(keys.mongooseURI);
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/dist'));
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static('client/dist'));
 
-  const path = require('path');
-  app.get('*', (req, res) => {
-    console.log(path.resolve(__dirname));
-    res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'));
-  });
-}
+//   const path = require('path');
+//   app.get('*', (req, res) => {
+//     console.log(path.resolve(__dirname));
+//     res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'));
+//   });
+// }
 
 app.use((err, req, res, next) => {
   delete err.stack;
@@ -49,4 +49,5 @@ app.use((err, req, res, next) => {
     .send(err.message || 'Some error occured');
 });
 
-app.listen(3000, () => console.log('running on port 3000'));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log('running on port 3000'));
