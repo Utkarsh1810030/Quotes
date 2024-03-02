@@ -36,15 +36,15 @@ mongoose.connect(keys.mongooseURI);
 
 // commented
 
-// if (process.env.NODE_ENV === 'production') {
-//   app.use(express.static('client/dist'));
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/dist'));
 
-//   const path = require('path');
-//   app.get('*', (req, res) => {
-//     console.log(path.resolve(__dirname));
-//     res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'));
-//   });
-// }
+  const path = require('path');
+  app.get('*', (req, res) => {
+    console.log(path.resolve(__dirname));
+    res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'));
+  });
+}
 
 app.get('/health/healthcheck', (req, res) => {
   res.send('server is up and running');
