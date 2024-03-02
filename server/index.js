@@ -40,6 +40,10 @@ app.use(passport.session());
 
 mongoose.connect(keys.mongooseURI);
 
+app.get('/health', (req, res) => {
+  res.send('server is up and running');
+});
+
 if (process.env.NODE_ENV === 'production') {
   const path = require('path');
   app.use(express.static(path.resolve(__dirname, 'client', 'dist')));
@@ -54,10 +58,6 @@ if (process.env.NODE_ENV === 'production') {
     );
   });
 }
-
-app.get('/health', (req, res) => {
-  res.send('server is up and running');
-});
 
 app.use((err, req, res, next) => {
   delete err.stack;
