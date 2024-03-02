@@ -44,6 +44,10 @@ mongoose.connect(keys.mongooseURI);
 //   });
 // }
 
+app.get('/healthcheck', () => {
+  res.send('server is up and running');
+});
+
 app.use((err, req, res, next) => {
   delete err.stack;
   return res
