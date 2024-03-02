@@ -3,6 +3,9 @@ const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const mongoose = require('mongoose');
+const cors = require('cors');
+// Allow all origins
+app.use(cors());
 
 require('./models/User');
 require('./services/passport');
