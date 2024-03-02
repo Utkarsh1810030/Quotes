@@ -16,6 +16,8 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 
+app.get('/', (req, res) => res.send('Express on Vercel'));
+
 require('./routes/authRoutes')(app);
 
 require('./routes/openaiRoutes')(app);
