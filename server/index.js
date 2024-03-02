@@ -4,8 +4,6 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const cors = require('cors');
-// Allow all origins
-app.use(cors());
 
 require('./models/User');
 require('./services/passport');
@@ -13,6 +11,7 @@ const keys = require('./config/keys');
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 
