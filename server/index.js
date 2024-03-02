@@ -32,6 +32,8 @@ app.use(passport.session());
 
 mongoose.connect(keys.mongooseURI);
 
+// commented
+
 // if (process.env.NODE_ENV === 'production') {
 //   app.use(express.static('client/dist'));
 
