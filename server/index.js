@@ -10,20 +10,12 @@ const keys = require('./config/keys');
 
 const app = express();
 
+app.use(express.json());
 app.use(bodyParser.json());
 
 require('./routes/authRoutes')(app);
 
 require('./routes/openaiRoutes')(app);
-
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/dist'));
-
-  const path = require('path');
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'output', 'dist', 'index.html'));
-  });
-}
 
 app.use(
   cookieSession({
@@ -37,7 +29,15 @@ app.use(passport.session());
 
 mongoose.connect(keys.mongooseURI);
 
-app.use(express.json());
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/dist'));
+
+  const path = require('path');
+  app.get('*', (req, res) => {
+    console.log(path.resolve(__dirname));
+    res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'));
+  });
+}
 
 app.use((err, req, res, next) => {
   delete err.stack;
