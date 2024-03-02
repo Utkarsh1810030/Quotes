@@ -55,7 +55,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-app.get('/health/healthcheck', (req, res) => {
+app.get('/health', (req, res) => {
   res.send('server is up and running');
 });
 
