@@ -16,7 +16,13 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 
-app.get('/', (req, res) => res.send('Express on Vercel'));
+app.get('/', (req, res) => {
+  if (process.env.VERCEL === '1') {
+    res.send('Running on Vercel');
+  } else {
+    res.send('Not running on Vercel');
+  }
+});
 
 require('./routes/authRoutes')(app);
 
