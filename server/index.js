@@ -40,17 +40,20 @@ app.use(passport.session());
 
 mongoose.connect(keys.mongooseURI);
 
-// commented
-
-// if (process.env.NODE_ENV === 'production') {
-//   app.use(express.static('client/dist'));
-
-//   const path = require('path');
-//   app.get('*', (req, res) => {
-//     console.log(path.resolve(__dirname));
-//     res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'));
-//   });
-// }
+if (process.env.NODE_ENV === 'production') {
+  const path = require('path');
+  app.use(express.static(path.resolve(__dirname, 'client', 'dist')));
+  app.get('*', (req, res) => {
+    res.sendFile(
+      path.resolve(__dirname, 'client', 'dist', 'index.html'),
+      function (err) {
+        if (err) {
+          res.status(500).send(err);
+        }
+      }
+    );
+  });
+}
 
 app.get('/health/healthcheck', (req, res) => {
   res.send('server is up and running');
